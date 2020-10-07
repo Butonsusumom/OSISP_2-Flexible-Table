@@ -151,7 +151,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			if (ChooseColor(&cc) == TRUE) {
 				rgbCurrent = (COLORREF)cc.rgbResult;
 			}
-			UpdateWindow(hWnd);
+			//UpdateWindow(hWnd);
 			InvalidateRect(hWnd, NULL, TRUE);
 			break;
 		}
@@ -160,7 +160,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		width = LOWORD(lParam);
 		height = HIWORD(lParam);
 		//ScrollWindow(hWnd, 0, -top, NULL, NULL);
-		UpdateWindow(hWnd);
+		//UpdateWindow(hWnd);
 		top = 0;
 		InvalidateRect(hWnd, NULL, TRUE);
 
@@ -359,9 +359,7 @@ void DrawTable(HDC hdc, int sx, int sy, int borderSize)
 	string str;
 
 	textSpacing = (int)((hx - 2 * borderSize) / 4);
-	hFont = CreateFont(20, 7, 0, 0, 300, FALSE, FALSE, FALSE, RUSSIAN_CHARSET, OUT_OUTLINE_PRECIS,
-		CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, TEXT("Times New Roman"));
-	SelectObject(hdc, hFont);
+	hFont = generateFont();
 
 	for (int i = 0; i < rows; i++)
 	{
